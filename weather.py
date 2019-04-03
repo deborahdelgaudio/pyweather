@@ -1,7 +1,24 @@
-from flask import Flask, render_template
-from quickWeather import city, w
-app = Flask(__name__)
+import requests
 
-@app.route('/')
-def homepage():
-    return render_template('homepage.html', city=city, today=w[0]['weather'][0]['main'], today_dscr= w[0]['weather'][0]['description'])
+
+class Weather:
+
+    def __int__(self, location):
+        self.location = location
+
+    def download_weather_data(self):
+        apikey = 'ffdc73fba9bede8bb4da20f33d4843df'
+        api_openweather = 'http://api.openweathermap.org/data/2.5/forecast?q=%s&cnt=3&appid=%s' % (self.location, apikey)
+
+        response = requests.get(api_openweather)
+        response.raise_for_status()
+
+        return response.json()
+
+    def get_forecast_data(self):
+        w = self.download_weather_data()
+        current = w[0]['weather'][0]['description']
+        tomorrow = w[1]['weather'][0]['description']
+        dayafter = w[2]['weather'][0]['description']
+
+        return current, tomorrow, dayafter
