@@ -2,5 +2,71 @@
 {% block mainContent %}
 {#here html code for a search bar with action /search #}
 <html lang="IT">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/">Search for a location</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" placeholder="Search" type="text">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
 </html>
+{% endblock %}
+{% block scriptZone %}
+<script>
+    $(document).ready(function (ev) {
+
+        // --- per tutti i tag che hanno la classe CSS "btn"
+        $('.btn').on('click', function (ev) {
+
+            ev.preventDefault();
+            ev.stopPropagation();
+
+            var tagInput = $(this);
+
+            var location = tagInput.data('nome');  //-----> how to pick up tha value from input tag??
+            // --- Creo un oggetto FormData
+            var formData = new FormData();
+            // --- Gli inserisco il valore
+            formData.append('location',location);
+
+            var request = new XMLHttpRequest();
+            request.open('POST', '/search');
+            request.send(formData);
+
+            request.onload(function (result) {
+                console.log(result);
+            });
+
+                // --- Faccio una chiamata async
+                /*
+                $.ajax({
+                    type:'POST',
+                    url: '/search',
+                    data: formData,
+                    success: function (result) {;
+
+                });
+                */
+            console.log(location);
+            return false;
+
+        });
+
+    });
+
+</script>
 {% endblock %}
