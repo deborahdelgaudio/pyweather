@@ -18,7 +18,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" placeholder="Search" type="text">
+            <input class="form-control mr-sm-2" id="txtArea" placeholder="Search" type="text">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -29,29 +29,23 @@
 <script>
     $(document).ready(function (ev) {
 
-        // --- per tutti i tag che hanno la classe CSS "btn"
+        // --- for each tag that has "btn" class
         $('.btn').on('click', function (ev) {
 
             ev.preventDefault();
             ev.stopPropagation();
 
-            var tagInput = $(this);
-
-            var location = tagInput.data('nome');  //-----> how to pick up tha value from input tag??
-            // --- Creo un oggetto FormData
+            var location = document.getElementById("txtArea").value;
+            // --- obj FormData
             var formData = new FormData();
-            // --- Gli inserisco il valore
-            formData.append('location',location);
+            // --- append value
+            formData.append("location",location);
 
             var request = new XMLHttpRequest();
             request.open('POST', '/search');
             request.send(formData);
 
-            request.onload(function (result) {
-                console.log(result);
-            });
-
-                // --- Faccio una chiamata async
+                // --- async call
                 /*
                 $.ajax({
                     type:'POST',
@@ -62,7 +56,6 @@
                 });
                 */
             console.log(location);
-            return false;
 
         });
 

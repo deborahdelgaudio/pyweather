@@ -1,9 +1,12 @@
 import requests
 
 
-class Weather:
+class Weather():
 
-    def __int__(self, location):
+    def __int__(self):
+        self.location = None
+
+    def set_location(self, location):
         self.location = location
 
     def download_weather_data(self):
@@ -17,6 +20,7 @@ class Weather:
 
     def get_forecast_data(self):
         w = self.download_weather_data()
+        w = w['list']
         current = w[0]['weather'][0]['description']
         tomorrow = w[1]['weather'][0]['description']
         dayafter = w[2]['weather'][0]['description']
