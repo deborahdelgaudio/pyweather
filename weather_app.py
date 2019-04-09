@@ -11,9 +11,12 @@ def homepage():
 
 @app.route('/search', methods=['POST', 'GET'])
 def search_for_a_city():
-    location = request.form 
-    w.set_location(location['location'])
-    return redirect(url_for('result_page', location=location['location']))
+    if request.method == "POST":
+        location = request.form
+        w.set_location(location['location'])
+        return redirect(url_for('.result_page', location=location['location']))
+    else:
+        return redirect(url_for('.homepage'))
 
 
 @app.route('/weather/<location>')

@@ -1,7 +1,7 @@
 {% extends "layouts/main_layout.html" %}
 {% block mainContent %}
 {#here html code for a search bar with action /search #}
-<form id="search" action="/search">
+<form action="/search" method="POST" id="search">
     <div class="input-group mb-3">
         <input type="text" class="form-control" id="txtArea" placeholder="search for a Location" aria-label="Location" aria-describedby="button-addon2">
         <div class="input-group-append">
