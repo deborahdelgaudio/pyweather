@@ -1,36 +1,19 @@
 {% extends "layouts/main_layout.html" %}
 {% block mainContent %}
 {#here html code for a search bar with action /search #}
-<html lang="IT">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/">Search for a location</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" id="txtArea" placeholder="Search" type="text">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form>
+<div class="input-group mb-3">
+    <input type="text" class="form-control" id="txtArea" placeholder="search for a Location" aria-label="Location" aria-describedby="button-addon2">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" id="button-addon2" type="button">Forecast</button>
     </div>
-</nav>
-</html>
+</div>
 {% endblock %}
 {% block scriptZone %}
 <script>
     $(document).ready(function (ev) {
 
         // --- for each tag that has "btn" class
-        $('.btn').on('click', function (ev) {
+        $('.btn-outline-secondary').on('click', function (ev) {
 
             ev.preventDefault();
             ev.stopPropagation();
@@ -45,16 +28,6 @@
             request.open('POST', '/search');
             request.send(formData);
 
-                // --- async call
-                /*
-                $.ajax({
-                    type:'POST',
-                    url: '/search',
-                    data: formData,
-                    success: function (result) {;
-
-                });
-                */
             console.log(location);
 
         });

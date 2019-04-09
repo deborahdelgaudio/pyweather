@@ -25,4 +25,4 @@ class Weather():
         tomorrow = w[1]['weather'][0]['description']
         dayafter = w[2]['weather'][0]['description']
 
-        return current, tomorrow, dayafter
+        return self.location, current, tomorrow, dayafter
