@@ -10,6 +10,7 @@ class Weather():
         self.location = location
 
     def download_weather_data(self):
+        #TODO validate location
         apikey = 'ffdc73fba9bede8bb4da20f33d4843df'
         api_openweather = 'http://api.openweathermap.org/data/2.5/forecast?q=%s&cnt=3&appid=%s' % (self.location, apikey)
 

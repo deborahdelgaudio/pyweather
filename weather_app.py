@@ -18,8 +18,7 @@ def search_for_a_city():
 
 @app.route('/weather/<location>')
 def result_page(location):
-    forecast = w.get_forecast_data()
-    return render_template('result.html', data=forecast)
+    return render_template('result.html', data=w.get_forecast_data())
 
 
 if __name__ == '__main__':
