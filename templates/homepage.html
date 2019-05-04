@@ -1,11 +1,11 @@
 {% extends "layouts/main_layout.html" %}
 {% block mainContent %}
 {#here html code for a search bar with action /search #}
-<form action="/search" method="POST" id="search">
+<form action="/result" method="POST" id="search">
     <div class="input-group mb-3">
         <input type="text" class="form-control" id="txtArea" placeholder="search for a Location" aria-label="Location" aria-describedby="button-addon2">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" href="/search" id="button-addon2" type="submit">Forecast</button>
+            <button class="btn btn-outline-secondary" id="button-addon2" type="submit" href="/result">Forecast</button>
         </div>
     </div>
 </form>
@@ -27,7 +27,7 @@
             formData.append("location",location);
 
             var request = new XMLHttpRequest();
-            request.open('POST', '/search');
+            request.open('POST', '/result');
             request.send(formData);
 
             console.log(location);
