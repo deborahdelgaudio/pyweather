@@ -5,7 +5,7 @@
     <div class="input-group mb-3">
         <input type="text" class="form-control" id="txtArea" placeholder="search for a Location" aria-label="Location" aria-describedby="button-addon2">
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="button-addon2" type="submit" href="/result">Forecast</button>
+            <button class="btn btn-outline-secondary" id="button-addon2" type="submit">Forecast</button>
         </div>
     </div>
 </form>
@@ -14,8 +14,8 @@
 <script>
     $(document).ready(function (ev) {
 
-        // --- for each tag that has "btn" class
-        $('.btn-outline-secondary').on('click', function (ev) {
+        // --- for tag that has "btn" class
+        $('.btn btn-outline-secondary').on('click', function (ev) {
 
             ev.preventDefault();
             ev.stopPropagation();
@@ -25,6 +25,7 @@
             var formData = new FormData();
             // --- append value
             formData.append("location",location);
+            console.log(formData)
 
             var request = new XMLHttpRequest();
             request.open('POST', '/result');

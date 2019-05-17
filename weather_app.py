@@ -13,7 +13,7 @@ def homepage():
 def result_page():
     if request.method == "POST":
         location = request.form
-        w.set_location(location['location'])
+        w.set_location(location.get('location'))
         return render_template('result.html', data=w.get_forecast_data())
     else:
         return redirect(url_for('homepage'))
