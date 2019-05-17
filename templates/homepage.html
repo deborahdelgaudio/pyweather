@@ -20,7 +20,8 @@
             ev.preventDefault();
             ev.stopPropagation();
 
-            var location = document.getElementById("txtArea").value;
+            var location = document.getElementById("txtArea").value.toLowerCase();
+            console.log(location);
             // --- obj FormData
             var formData = new FormData();
             // --- append value
@@ -31,7 +32,7 @@
             request.open('POST', '/result');
             request.send(formData);
 
-            console.log(location);
+
 
         });
 

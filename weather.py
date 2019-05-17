@@ -9,6 +9,9 @@ class Weather():
     def set_location(self, location):
         self.location = location
 
+    def get_location(self):
+        return self.location
+
     def download_weather_data(self):
         #TODO validate location
         apikey = 'ffdc73fba9bede8bb4da20f33d4843df'
@@ -20,10 +23,10 @@ class Weather():
         return response.json()
 
     def get_forecast_data(self):
-        w = self.download_weather_data()
-        w = w['list']
+        weather = self.download_weather_data()
+        w = weather['list']
         current = w[0]['weather'][0]['description']
         tomorrow = w[1]['weather'][0]['description']
         dayafter = w[2]['weather'][0]['description']
 
-        return self.location, current, tomorrow, dayafter
+        return weather['city']['name'], current, tomorrow, dayafter

@@ -1,7 +1,26 @@
 {% extends "layouts/main_layout.html" %}
 {% block mainContent %}
 <div>
-    {{data}}
+    <h1> Forecast for {{data[0]}}</h1>
+    <article>
+        <i class="fas fa-sun-cloud"></i>
+        <p>Today: {{data[1]}}</p>
+    </article>
+    <article>
+        <p>Tomorrow: {{data[2]}}</p>
+    </article>
+    <article>
+        <p>Day after tomorrow: {{data[3]}}</p>
+    </article>
 </div>
 {# here html code that displays weather data: data #}
+{% endblock %}
+{% block scriptZone %}
+<script>
+    $(document).ready(function (ev) {
+
+        console.log("pagina del risultat")
+
+    });
+</script>
 {% endblock %}
