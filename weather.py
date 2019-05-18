@@ -1,10 +1,10 @@
 import requests
 
-
 class Weather():
 
-    def __int__(self):
+    def __init__(self, config):
         self.location = None
+        self.config = config
 
     def set_location(self, location):
         self.location = location
@@ -14,13 +14,17 @@ class Weather():
 
     def download_weather_data(self):
         #TODO validate location
-        apikey = 'ffdc73fba9bede8bb4da20f33d4843df'
-        api_openweather = 'http://api.openweathermap.org/data/2.5/forecast?q=%s&cnt=3&appid=%s' % (self.location, apikey)
+        params = {
+            'q': self.location,
+            'appid': self.config['API_KEY']
+        }
 
-        response = requests.get(api_openweather)
-        response.raise_for_status()
-
-        return response.json()
+        try:
+            response = requests.get(self.config['API_URL'], params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.HTTPError:
+            raise WeatherException
 
     def get_forecast_data(self):
         weather = self.download_weather_data()
@@ -30,3 +34,7 @@ class Weather():
         dayafter = w[2]['weather'][0]['description']
 
         return weather['city']['name'], current, tomorrow, dayafter
+
+class WeatherException(Exception):
+    def __init__(self, message = 'Weather exception'):
+        super().__init__(self, message)
