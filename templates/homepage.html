@@ -3,40 +3,20 @@
 {#here html code for a search bar with action /search #}
 <form action="/result" method="POST" id="search">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" id="txtArea" placeholder="search for a Location" aria-label="Location" aria-describedby="button-addon2">
+        <input type="text"
+               name="location"
+               class="form-control"
+               id="txtArea"
+               placeholder="Search for a Location"
+               aria-label="Location"
+               aria-describedby="button-addon2"
+               required
+        >
         <div class="input-group-append">
-            <button class="btn btn-outline-secondary" id="button-addon2" type="submit">Forecast</button>
+            <button class="btn btn-outline-secondary" id="button-addon2" type="submit">
+                Forecast
+            </button>
         </div>
     </div>
 </form>
-{% endblock %}
-{% block scriptZone %}
-<script>
-    $(document).ready(function (ev) {
-
-        // --- for tag that has "btn" class
-        $('.btn btn-outline-secondary').on('click', function (ev) {
-
-            ev.preventDefault();
-            ev.stopPropagation();
-
-            var location = document.getElementById("txtArea").value.toLowerCase();
-            console.log(location);
-            // --- obj FormData
-            var formData = new FormData();
-            // --- append value
-            formData.append("location",location);
-            console.log(formData)
-
-            var request = new XMLHttpRequest();
-            request.open('POST', '/result');
-            request.send(formData);
-
-
-
-        });
-
-    });
-
-</script>
 {% endblock %}
