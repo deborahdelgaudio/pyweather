@@ -23,5 +23,9 @@ def result_page():
     else:
         return redirect(url_for('homepage'))
 
+@app.route('/about', methods=['GET'])
+def about_page():
+    return render_template('about.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
