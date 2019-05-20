@@ -1,25 +1,35 @@
 {% extends "layouts/main_layout.html" %}
 {% block mainContent %}
-<div>
-    <h1> Forecast for {{data[0]}}</h1>
-    <article>
-        <i class="fas fa-sun-cloud"></i>
-        <p>Today: {{data[1]}}</p>
-    </article>
-    <article>
-        <p>Tomorrow: {{data[2]}}</p>
-    </article>
-    <article>
-        <p>Day after tomorrow: {{data[3]}}</p>
-    </article>
+<section>
+    <h1>Forecast for {{data[0]}}</h1>
+    <div class="container-fluid">
+        <article>
+            <h4>Today:</h4>
+            <p>{{data[1]}}</p>
+        </article>
+        <article>
+            <h4>Tomorrow:</h4>
+            <p>{{data[2]}}</p>
+        </article>
+        <article>
+            <h4>Day after tomorrow:</h4>
+            <p>{{data[3]}}</p>
+        </article>
+    </div>
+</section>
+<div class="button-container">
+    <a class="btn btn-primary" href="/" role="button">Search Again</a>
 </div>
-{# here html code that displays weather data: data #}
 {% endblock %}
+
+
+
+
 {% block scriptZone %}
 <script>
     $(document).ready(function (ev) {
 
-        console.log("pagina del risultat")
+        console.log("Result LOADED")
 
     });
 </script>
