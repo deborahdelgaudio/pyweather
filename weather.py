@@ -18,7 +18,6 @@ class Weather():
             'q': self.location,
             'appid': self.config['API_KEY']
         }
-
         try:
             response = requests.get(self.config['API_URL'], params=params)
             response.raise_for_status()
@@ -36,5 +35,15 @@ class Weather():
         return weather['city']['name'], current, tomorrow, dayafter
 
 class WeatherException(Exception):
-    def __init__(self, message = 'Weather exception'):
-        super().__init__(self, message)
+
+    def __init__(self, *args):
+        if args:
+            self.message = args[0]
+        else:
+            self.message = None
+
+    def __str__(self):
+        if self.message:
+            return self.message
+        else:
+            return "Weather not found!"
