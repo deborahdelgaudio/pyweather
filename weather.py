@@ -16,7 +16,8 @@ class Weather():
         #TODO validate location
         params = {
             'q': self.location,
-            'appid': self.config['API_KEY']
+            'appid': self.config['API_KEY'],
+            'units': 'metric'
         }
         try:
             response = requests.get(self.config['API_URL'], params=params)
@@ -28,9 +29,9 @@ class Weather():
     def get_forecast_data(self):
         weather = self.download_weather_data()
         w = weather['list']
-        current = w[0]['weather'][0]['description']
-        tomorrow = w[1]['weather'][0]['description']
-        dayafter = w[2]['weather'][0]['description']
+        current = w[0]['weather'][0]['description'], w[0]['main']['temp']
+        tomorrow = w[1]['weather'][0]['description'], w[1]['main']['temp']
+        dayafter = w[2]['weather'][0]['description'], w[2]['main']['temp']
 
         return weather['city']['name'], current, tomorrow, dayafter
 

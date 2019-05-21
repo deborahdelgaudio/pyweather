@@ -1,36 +1,38 @@
 {% extends "layouts/main_layout.html" %}
 {% block mainContent %}
-<section>
-    <h1>Forecast for {{data[0]}}</h1>
+<section class="result">
+    <h2><small class="text-muted">Forecast for</small> {{data[0]}}</h2>
     <div class="container-fluid">
-        <article>
-            <h4>Today:</h4>
-            <p>{{data[1]}}</p>
-        </article>
-        <article>
-            <h4>Tomorrow:</h4>
-            <p>{{data[2]}}</p>
-        </article>
-        <article>
-            <h4>Day after tomorrow:</h4>
-            <p>{{data[3]}}</p>
-        </article>
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card-header"><strong>Today</strong></div>
+            <div class="card-body">
+                <article>
+                    <p>{{data[1][0]}}</p>
+                    <em>temperature:  {{data[1][1]}}°C</em>
+                </article>
+            </div>
+        </div>
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card-header"><strong>Tomorrow</strong></div>
+            <div class="card-body">
+                <article>
+                    <p>{{data[2][0]}}</p>
+                    <em>temperature:  {{data[2][1]}}°C</em>
+                </article>
+            </div>
+        </div>
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+            <div class="card-header"><strong>Day after tomorrow</strong></div>
+            <div class="card-body">
+                <article>
+                    <p>{{data[3][0]}}</p>
+                    <em>temperature:  {{data[3][1]}}°C</em>
+                </article>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <a class="btn btn-outline-success" href="/" role="button">Search Again</a>
     </div>
 </section>
-<div class="button-container">
-    <a class="btn btn-primary" href="/" role="button">Search Again</a>
-</div>
-{% endblock %}
-
-
-
-
-{% block scriptZone %}
-<script>
-    $(document).ready(function (ev) {
-
-        console.log("Result LOADED")
-
-    });
-</script>
 {% endblock %}
