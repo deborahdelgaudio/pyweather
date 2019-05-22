@@ -1,5 +1,6 @@
 import requests
 
+
 class Weather():
 
     def __init__(self, config):
@@ -13,7 +14,6 @@ class Weather():
         return self.location
 
     def download_weather_data(self):
-        #TODO validate location
         params = {
             'q': self.location,
             'appid': self.config['API_KEY'],
@@ -24,7 +24,7 @@ class Weather():
             response.raise_for_status()
             return response.json()
         except requests.exceptions.HTTPError:
-            raise WeatherException
+            raise WeatherException("Weather for {} not found".format(self.location))
 
     def get_forecast_data(self):
         weather = self.download_weather_data()
@@ -34,6 +34,7 @@ class Weather():
         dayafter = w[2]['weather'][0]['description'], w[2]['main']['temp']
 
         return weather['city']['name'], current, tomorrow, dayafter
+
 
 class WeatherException(Exception):
 
